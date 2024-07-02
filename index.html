@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #continue-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #content {
+            display: none;
+            padding: 20px;
+        }
+    </style>
+</head>
 <body>
-<script>
-    var audio = new Audio('HotIce.mp3');
-    audio.play();
-</script>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div id="splash">
+        <button id="continue-btn">Continue</button>
+    </div>
+
+    <div id="content">
+        <audio id="background-audio" loop>
+            <source src="HotIce.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <h1>Hello World</h1>
+        <p>I'm hosted with GitHub Pages.</p>
+    </div>
+
+    <script>
+        document.getElementById('continue-btn').addEventListener('click', function() {
+            document.getElementById('splash').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('background-audio').play();
+        });
+    </script>
 </body>
 </html>
