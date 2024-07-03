@@ -155,6 +155,30 @@
 				transform: rotate(0deg);
 			}
 		}
+		.section-separator {
+			height: 80px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.parallax-bg {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('DeepSpaceSplash.png'); /* Replace with your space-themed image */
+			background-size: cover;
+			background-position: center;
+			z-index: -1;
+		}
+		.section {
+			padding: 50px 20px;
+			min-height: 100vh;
+			background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+			position: relative;
+			z-index: 1;
+		}
         .buy-btn {
             background-color: #00ff00;
             color: black;
@@ -194,6 +218,8 @@
                 <li><a href="#roadmap">Roadmap</a></li>
             </ul>
         </nav>
+		
+		<div class="parallax-bg"></div>
 
         <div id="hero" class="section">
 			<img id="circle-logo" src="CircleLogo.png" alt="Circle Logo">
@@ -202,11 +228,15 @@
                 <p>Pepe's gone interstellar. It's time to rescue our rare boi from the dankest reaches of the cosmos.</p>
             </div>
         </div>
+		
+		<div class="section-separator"></div>
 
         <div id="about" class="section">
             <h2>About</h2>
             <p>Our froggy boi's so deep in space, he's beyond Wojak's wildest fever dreams. He's seein' colors that don't exist and vibin' with alien waifus.</p>
         </div>
+		
+		<div class="section-separator"></div>
 
         <div id="tokenomics" class="section">
             <h2>Tokenomics</h2>
@@ -214,6 +244,8 @@
             <p>1% Tax on all transactions</p>
             <p>50% of total supply locked in liquidity</p>
         </div>
+		
+		<div class="section-separator"></div>
 
         <div id="roadmap" class="section">
             <h2>Roadmap</h2>
