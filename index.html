@@ -12,32 +12,54 @@
             color: #ffffff;
             background-color: #000000;
         }
-        #splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        #continue-btn {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            background-color: #1337ff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
+		#splash {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('DeepSpaceSplash.png');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		#splash::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.25); /* Adjust opacity as needed */
+		}
+
+		#continue-btn {
+			padding: 10px 20px;
+			font-size: 18px;
+			cursor: pointer;
+			background-color: #1a0933;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			position: relative;
+			z-index: 1;
+			transition: background-color 0.3s ease;
+		}
+
+		#continue-btn:hover {
+			background-color: #3d1a7a;
+		}
         #content {
             display: none;
         }
         nav {
-            background-color: #1337ff;
+            background-color: #1a0933;
             position: fixed;
             width: 100%;
             top: 0;
@@ -60,20 +82,79 @@
             text-decoration: none;
         }
         nav li a:hover {
-            background-color: #0000ff;
+            background-color: #3d1a7a;
         }
         .section {
             padding: 50px 20px;
             min-height: 100vh;
         }
-        #hero {
-            background-image: url('HeroPepe.png');
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+		#hero {
+			background-image: url('HeroPepe.png');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			align-items: center;
+			text-align: center;
+			min-height: 100vh;
+			padding: 20px;
+			position: relative;
+		}
+
+		#hero > div {
+			position: relative;
+			z-index: 3;
+			max-width: 800px;
+			margin: 0 auto;
+			height: 50vh; /* This makes it occupy the bottom 2/3 */
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		#hero h1 {
+			font-size: 4rem; /* Increased font size */
+			margin-bottom: 20px;
+			text-shadow: 
+				-4px -4px 4px #1a0933,  
+				 4px -4px 4px #1a0933,
+				-4px  4px 4px #1a0933,
+				 4px  4px 4px #1a0933;
+			font-weight: bold;
+			letter-spacing: 2px;
+		}
+
+		#hero p {
+			font-size: 1.5rem; /* Increased font size */
+			line-height: 1.6;
+			max-width: 80%;
+			margin: 0 auto;
+			text-shadow: 
+				-2px -2px 2px #1a0933,  
+				 2px -2px 2px #1a0933,
+				-2px  2px 2px #1a0933,
+				 2px  2px 2px #1a0933;
+		}
+		#circle-logo {
+			position: absolute;
+			top: 9%;
+			right: 25.5%;
+			width: 20%; /* Adjust this value to change the size of the logo */
+			height: auto;
+			animation: rotate 20s linear infinite; /* Adjust the duration as needed */
+			z-index: 2;
+		}
+
+		@keyframes rotate {
+			from {
+				transform: rotate(360deg);
+			}
+			to {
+				transform: rotate(0deg);
+			}
+		}
         .buy-btn {
             background-color: #00ff00;
             color: black;
@@ -111,15 +192,14 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#tokenomics">Tokenomics</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#" class="buy-btn">Buy $dsPEPE</a></li>
             </ul>
         </nav>
 
         <div id="hero" class="section">
+			<img id="circle-logo" src="CircleLogo.png" alt="Circle Logo">
             <div>
                 <h1>Deep Space Pepe</h1>
-                <p>Pepe's gone interstellar, anons. He's floatin' in the void, higher than Snoop Dogg at a hotbox convention.</p>
-                <a href="#" class="buy-btn">Buy $dsPEPE</a>
+                <p>Pepe's gone interstellar. It's time to rescue our rare boi from the dankest reaches of the cosmos.</p>
             </div>
         </div>
 
@@ -152,6 +232,16 @@
     </div>
 
     <script>
+		document.getElementById('continue-btn').addEventListener('click', function() {
+			var splash = document.getElementById('splash');
+			splash.style.opacity = '0';
+			setTimeout(function() {
+				splash.style.display = 'none';
+				document.getElementById('content').style.display = 'block';
+				document.getElementById('background-audio').play();
+			}, 500);
+		});
+	
         document.getElementById('continue-btn').addEventListener('click', function() {
             document.getElementById('splash').style.display = 'none';
             document.getElementById('content').style.display = 'block';
